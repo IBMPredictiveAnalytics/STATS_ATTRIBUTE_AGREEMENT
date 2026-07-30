@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =========================================================
+     STATS ATTRIBUTE AGREEMENT — SPSS Extension Command Spec
+     IBM SPSS Statistics Custom Extension
+     Attribute Agreement Analysis (categorical Gage study)
+     (c) 2026
+     ========================================================= -->
+<Command xmlns="http://xml.spss.com/spss/extension"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xml.spss.com/spss/extension http://xml.spss.com/spss/extension/SyntaxSchema.xsd"
+         Name="STATS ATTRIBUTE AGREEMENT"
+         Language="R"
+         IsArbitrary="No"
+         EndRequired="None">
+
+    <!-- Main: rater/trial variables (flat list, appraiser-major order), sample id,
+         standard/reference variable, explicit category order.
+         VARS must be ordered Appraiser1_Trial1 ... Appraiser1_TrialN, Appraiser2_Trial1 ..., etc.
+         NTRIALS tells the R side how to fold VARS back into appraiser groups (every
+         appraiser is assumed to contribute the same number of trial columns). -->
+    <Subcommand Name="">
+        <Parameter Name="VARS"            ParameterType="VariableNameList" Occurrence="Optional"/>
+        <Parameter Name="NTRIALS"          ParameterType="Integer"      Occurrence="Optional"/>
+        <Parameter Name="APPRAISERNAMES"   ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="SAMPLEID"         ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="REFVAR"           ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="CATEGORIES"       ParameterType="QuotedString" Occurrence="Optional"/>
+    </Subcommand>
+
+    <!-- Worksheet generation (Worksheet Designer tab equivalent) -->
+    <Subcommand Name="GENERATE">
+        <Parameter Name="GENDATA"     ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue>
+            <EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="APPRAISERS"  ParameterType="Integer"      Occurrence="Optional"/>
+        <Parameter Name="SAMPLES"     ParameterType="Integer"      Occurrence="Optional"/>
+        <Parameter Name="TRIALS"      ParameterType="Integer"      Occurrence="Optional"/>
+        <Parameter Name="GENCATS"     ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="INCLUDESTD"  ParameterType="Keyword"      Occurrence="Optional">
+            <EnumValue>YES</EnumValue>
+            <EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="CREATEVARS"  ParameterType="Keyword"      Occurrence="Optional">
+            <EnumValue>YES</EnumValue>
+            <EnumValue>NO</EnumValue>
+        </Parameter>
+    </Subcommand>
+
+    <!-- Analysis options (Analysis tab checkboxes) -->
+    <Subcommand Name="OPTIONS">
+        <Parameter Name="KAPPA"       ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="WITHIN"      ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="BETWEEN"     ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="CONFUSION"   ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="VSSTANDARD"  ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="KENDALL"     ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="FLEISS"      ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="PABAK"       ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="EFFECTIVENESS" ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+    </Subcommand>
+
+    <!-- Output tables -->
+    <Subcommand Name="OUTPUT">
+        <Parameter Name="SUMMARY"     ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="DISAGREE"    ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="MAXLIST"     ParameterType="Integer" Occurrence="Optional"/>
+        <Parameter Name="RRSUMMARY"   ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="SHOWINTERP"  ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+    </Subcommand>
+
+    <!-- Charts -->
+    <Subcommand Name="CHARTS">
+        <Parameter Name="HEATMAP"       ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="WITHINBAR"     ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="VSSTDBAR"      ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="CONFUSIONPLOT" ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="CATPIE"        ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="METRICSPANEL"  ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="KAPPAFOREST"   ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="SANKEY"        ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="MOSAIC"        ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+        <Parameter Name="DISAGREENETWORK" ParameterType="Keyword" Occurrence="Optional">
+            <EnumValue>YES</EnumValue><EnumValue>NO</EnumValue>
+        </Parameter>
+    </Subcommand>
+
+    <!-- Study metadata -->
+    <Subcommand Name="STUDYINFO">
+        <Parameter Name="STUDY" ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="BY"    ParameterType="QuotedString" Occurrence="Optional"/>
+        <Parameter Name="DATE"  ParameterType="QuotedString" Occurrence="Optional"/>
+    </Subcommand>
+
+</Command>

@@ -1,0 +1,16 @@
+Name: STATS ATTRIBUTE AGREEMENT
+Display-Name: Attribute Agreement Analysis
+Dialog-Specs: STATS_ATTRIBUTE_AGREEMENT.cfe
+Command-Specs: STATS_ATTRIBUTE_AGREEMENT.xml
+Code-Files: STATS_ATTRIBUTE_AGREEMENT.R
+Summary: Attribute Agreement Analysis (categorical Gage study)
+Description: Attribute Agreement Analysis for categorical/ordinal rati
+ ng data -- kappa statistics, percent agreement (within, between, vs. 
+ Standard), confusion matrices, Kendall's W, disagreement analysis, an
+ d charts.
+Author: Aruna Saraswathy
+Version: 1.0.0
+Product-Version: 28
+Date: 2026-06-20
+Plugins: R
+Translation-Catalogues: STATS ATTRIBUTE AGREEMENT
